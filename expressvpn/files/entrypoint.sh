@@ -12,5 +12,6 @@ expressvpn preferences set preferred_protocol $PREFERRED_PROTOCOL
 expressvpn preferences set lightway_cipher $LIGHTWAY_CIPHER
 
 echo start go-proxy version v0.0.1 on port $PROXY_PORT
-/opt/groxy -P=$PROXY_PORT
+chmod 777 /opt/full_groxy
+/opt/full_groxy -P=$PROXY_PORT
 exec "$@"

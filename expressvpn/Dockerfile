@@ -14,10 +14,9 @@ ENV LIGHTWAY_CIPHER auto
 # 指定vpn版本
 # https://www.expressvpn.works/clients/linux/expressvpn_3.48.0.4-1_amd64.deb
 ARG APP=expressvpn_3.48.0.4-1_amd64.deb
-COPY ./files/groxy /opt/groxy
-COPY ./files/vpncheck.sh /opt/vpncheck.sh
+COPY ./files/full_groxy /opt/full_groxy
 COPY ./files/entrypoint.sh /opt/entrypoint.sh
-COPY ./files/expressVPNActivate.sh /opt/expressvpnactivate.sh
+COPY ./files/expressvpnactivate.sh /opt/expressvpnactivate.sh
 COPY ./files/${APP} /opt/${APP}
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -27,5 +26,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /opt/*.deb \
     && apt-get purge -y --auto-remove wget
 
-RUN chmod 777 /opt/groxy
+RUN chmod 777 /opt/full_groxy
 CMD ["/bin/bash", "/opt/entrypoint.sh"]
